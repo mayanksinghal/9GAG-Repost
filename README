@@ -1,20 +1,15 @@
-HackerNews Plus
-A Google Chrome Addon to make the HackerNews experience a little better.
+9GAG Repost
+Mark reposts using FB Comment data.
 
 Developer: Mayank Singhal
 GiitHub ID: mayanksinghal
 
 
-v0.1.1
-Fixed Bug: Works on Landing Page.
+v1.0.2
+Fixed Bug: Lower case and "R E P O S T" matching.
 
-v0.1.0
-Basic Keyboard shortcuts
-   k - Previous Story
-   j - Next Story
-   Home - First Story
-   End - Last Story (or More)
-   m - Open Story in Current Window
-   n - Open Story in New Window
-   Return - Open Story in Current Window
-   Shift + Return - Open Story in New Window
+v1.0.1
+Shows "Repost: 0" when there are no matching comments.
+
+v1.0.0
+Working app uploaded.

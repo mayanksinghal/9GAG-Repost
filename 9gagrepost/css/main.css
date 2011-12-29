@@ -1,0 +1,18 @@
+tr.genericRow td:first-child {
+  border-left: 3px solid #f6f6ef
+}
+tr.selected {
+  background: #ffffff;
+}
+tr.selected td:first-child {
+  border-left: 3px solid #ff6500;
+}
+tr.selected td:last-child {
+  border-right: 1px solid #e6e6f0;
+}
+tr.top td {
+  border-top: 1px solid #e6e6f0;
+}
+tr.bottom td {
+  border-bottom: 1px solid #e6e6f0;
+}
