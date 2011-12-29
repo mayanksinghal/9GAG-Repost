@@ -4,6 +4,9 @@ Mark reposts using FB Comment data.
 Developer: Mayank Singhal
 GiitHub ID: mayanksinghal
 
+v1.0.4
+Console output removed, all links considered and repost now shows comments + likes when hovered on. 
+
 v1.0.3
 Regex matching for re+po+st kind of comments, removed random files from the extension.
 

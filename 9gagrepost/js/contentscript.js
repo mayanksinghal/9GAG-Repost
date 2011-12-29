@@ -39,19 +39,35 @@ var NineGAGRepost = function() {
 			var dataUrl = $(this).attr("data-url");
 			var elementInfo = $(this).find(".info > p");
 			var showValues = function(data, element) {
-				var repostCount = 0;
+				var commentCount = 0;
+				var likeCount = 0;
 				for (var i = 0; i < data.length; i++) {
 					var comment = data[i];
 					if (checkIfHasBadWord(comment.text)) {
-						repostCount += 1 + comment.likes;
+						commentCount ++;
+						likeCount += comment.likes;
 					}
 				}
-				if (repostCount >= 0) {
-					var repost = $("<span class='repost'></span>");
-					repost.html("Repost: " + repostCount);
-					element.append(repost);
-					console.log(repostCount);
-				}
+				var repost = $("<span class='repost'></span>");
+				var repostAndLike =$("<span class='respostAndLike'></span>");
+				var repostLike = $("<span class='hidden'>" + commentCount + " + " + likeCount + "</span>");
+				repostAndLike.html((likeCount + commentCount))
+				repost.html("<span>Repost: </span>");
+				repost.append(repostAndLike);
+				repost.append(repostLike);
+				var displayDifferent = false;
+				repost.hover(function() {
+					if (displayDifferent) {
+						repostLike.addClass("hidden");
+						repostAndLike.removeClass("hidden");
+						displayDifferent = false;
+					} else {
+						repostAndLike.addClass("hidden");
+						repostLike.removeClass("hidden");
+						displayDifferent = true;
+					}
+				});
+				element.append(repost);
 			};
 			getData(dataUrl, showValues, elementInfo);
 		});
@@ -59,7 +75,7 @@ var NineGAGRepost = function() {
 
 	var markReposts = function () {
 		parseStories();
-		var styleEle = $("<style>span.repost {padding-left:10px;} <style>");
+		var styleEle = $("<style>span.repost {padding-left:10px;} span.hidden{display:none;}<style>");
 		$("head").append(styleEle);
 	};
 
@@ -81,18 +97,15 @@ var NineGAGRepost = function() {
 	};
 
 
-	/**
-	 * Initiate operations: Keyboard Shortcuts etc.
-	 */
 	var initate = function() {
-		var pathname = window.location.pathname;
-
-		// Keyboard shortcuts.
-		var prefixes = [ "", "/hot", "/trending", "/vote"];
-		if (hasPrefix(pathname, prefixes)) {
-			// Operations for news pages.
-			markReposts();
-		}
+		markReposts();
+		
+		//var pathname = window.location.pathname;
+		//var prefixes = ["/hot", "/trending", "/vote"];
+		//if ((pathname === "/") || (hasPrefix(pathname, prefixes))) {
+		//	// Operations for news pages.
+		//	markReposts();
+		//}
 	};
 
 	$(document).ready(function () {
