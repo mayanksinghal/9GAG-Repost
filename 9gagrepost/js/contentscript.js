@@ -25,13 +25,28 @@ var NineGAGRepost = function() {
 	}
 	
 	var getData = function(url, toExecute, element) {
-		var requestUrl = "https://api.facebook.com/method/fql.query?" + "format=JSON"  +
-				"&query=select+text,likes+from+comment+where+object_id+in+" +
-				"%28select+comments_fbid+from+link_stat+where+url+%3D%27" +
-				encodeURIComponent(url) + "%27%29&pretty=1";
-		$.getJSON(requestUrl, function(data) {
-			toExecute(data, element);
-		});
+		//var requestUrl = "https://api.facebook.com/method/fql.query?" + "format=JSON"  +
+		//		"&query=select+text,likes+from+comment+where+object_id+in+" +
+		//		"%28select+comments_fbid+from+link_stat+where+url+%3D%27" +
+		//		encodeURIComponent(url) + "%27%29&pretty=1";
+		//console.log(requestUrl);
+		var returnData = [];
+		var getNextPart = function(offsetValue) {
+			var requestUrl = "http://graph.facebook.com/fql?q=" +
+					"SELECT%20text,likes%20FROM%20comment%20where%20object_id+in+" +
+					"%28select+comments_fbid+from+link_stat+where+url+%3D%27" + encodeURIComponent(url) +
+					"%27%29%20ORDER%20BY%20time%20LIMIT%20100%20OFFSET%20" + offsetValue;
+			$.getJSON(requestUrl, function(data) {
+				data = data.data;
+				if (data.length > 0) {
+					returnData = returnData.concat(data);
+					getNextPart(offsetValue + 100);
+				} else {
+					toExecute(returnData, element);
+				}
+			});
+		}
+		getNextPart(0);
 	}
 
 	var parseStories = function() {
@@ -46,7 +61,9 @@ var NineGAGRepost = function() {
 					if (checkIfHasBadWord(comment.text)) {
 						commentCount ++;
 						likeCount += comment.likes;
+						//console.log(comment.likes + " " + commentCount + " " + likeCount);
 					}
+					
 				}
 				var repost = $("<span class='repost'></span>");
 				var repostAndLike =$("<span class='respostAndLike'></span>");
@@ -113,3 +130,6 @@ var NineGAGRepost = function() {
 	});
 } ();
 
+
+
+// fql?q=SELECT text,likes,time FROM comment where  object_id = 10150558020217146 ORDER BY time LIMIT 100 OFFSET 99

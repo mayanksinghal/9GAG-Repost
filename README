@@ -4,6 +4,12 @@ Mark reposts using FB Comment data.
 Developer: Mayank Singhal
 GiitHub ID: mayanksinghal
 
+v1.0.6
+100+ Comments - Big Fix.
+
+v1.0.5
+JQuery version updated to 1.7.1
+
 v1.0.4
 Console output removed, all links considered and repost now shows comments + likes when hovered on. 
 
