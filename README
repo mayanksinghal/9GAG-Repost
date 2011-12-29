@@ -4,6 +4,8 @@ Mark reposts using FB Comment data.
 Developer: Mayank Singhal
 GiitHub ID: mayanksinghal
 
+v1.0.3
+Regex matching for re+po+st kind of comments, removed random files from the extension.
 
 v1.0.2
 Fixed Bug: Lower case and "R E P O S T" matching.

@@ -18,6 +18,9 @@ var NineGAGRepost = function() {
 				return true;
 			}
 		}
+		if (comment.match(/re{1,}po{1,}st/)) {
+			return true;
+		}
 		return false;
 	}
 	
