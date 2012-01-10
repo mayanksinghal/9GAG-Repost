@@ -23,7 +23,7 @@ var NineGAGRepost = function() {
 		}
 		return false;
 	}
-	
+
 	var getData = function(url, toExecute, element) {
 		//var requestUrl = "https://api.facebook.com/method/fql.query?" + "format=JSON"  +
 		//		"&query=select+text,likes+from+comment+where+object_id+in+" +
@@ -52,7 +52,7 @@ var NineGAGRepost = function() {
 	var parseStories = function() {
 		$("li.entry-item").each(function() {
 			var dataUrl = $(this).attr("data-url");
-			var elementInfo = $(this).find(".info > p");
+			var elementInfo = $(this).find(".info p:last");
 			var showValues = function(data, element) {
 				var commentCount = 0;
 				var likeCount = 0;
@@ -61,9 +61,8 @@ var NineGAGRepost = function() {
 					if (checkIfHasBadWord(comment.text)) {
 						commentCount ++;
 						likeCount += comment.likes;
-						//console.log(comment.likes + " " + commentCount + " " + likeCount);
+						// console.log(comment.likes + " " + commentCount + " " + likeCount);
 					}
-					
 				}
 				var repost = $("<span class='repost'></span>");
 				var repostAndLike =$("<span class='respostAndLike'></span>");
@@ -92,6 +91,7 @@ var NineGAGRepost = function() {
 
 	var markReposts = function () {
 		parseStories();
+		// console.log("Parsing complete.");
 		var styleEle = $("<style>span.repost {padding-left:10px;} span.hidden{display:none;}<style>");
 		$("head").append(styleEle);
 	};
@@ -116,7 +116,7 @@ var NineGAGRepost = function() {
 
 	var initate = function() {
 		markReposts();
-		
+
 		//var pathname = window.location.pathname;
 		//var prefixes = ["/hot", "/trending", "/vote"];
 		//if ((pathname === "/") || (hasPrefix(pathname, prefixes))) {

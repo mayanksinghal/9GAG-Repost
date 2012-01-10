@@ -4,6 +4,9 @@ Mark reposts using FB Comment data.
 Developer: Mayank Singhal
 GiitHub ID: mayanksinghal
 
+v1.0.7
+Fixed the addon for changes in CSS on 9GAG. Reduced permissions.
+
 v1.0.6
 100+ Comments - Big Fix.
 

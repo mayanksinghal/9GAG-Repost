@@ -1,10 +1,9 @@
 {
   "name": "9GAG Repost",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Uses FB comments to generate repost values for a 9GAG Post",
-  
+
   "permissions": [
-    "tabs",
     "http://9gag.com/*"
   ],
   "icons": {
@@ -17,5 +16,5 @@
       "js" : ["js/jquery.min.js", "js/contentscript.js"]
     }
   ],
-  "update_url": "http://home.iitb.ac.in/~mayank.singhal/chrome/9gagrepost/updates.xml"
+  "update_url": "http://home.iitb.ac.in/~mayank.singhal/chrome/9gag_repost/updates.xml"
 }
